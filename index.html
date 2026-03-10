@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake WhatsApp Profile Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', sans-serif;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        /* Left Column */
+        .left-section {
+            background: linear-gradient(135deg, rgba(15, 15, 30, 0.98), rgba(25, 25, 45, 0.98));
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        /* Right Column */
+        .right-section {
+            background: linear-gradient(135deg, rgba(10, 10, 25, 0.98), rgba(20, 20, 40, 0.98));
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        /* Header */
+        .header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 50%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: #a0a0b0;
+            font-size: 1.15em;
+            font-weight: 500;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .banner h2 {
+            color: #00d4ff;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .banner-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .banner-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: #e0e0e0;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        /* Form Box */
+        .form-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 212, 255, 0.02) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.05);
+        }
+
+        .section-header {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #b0b0c0;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            color: #e0e0e0;
+            font-size: 1em;
+            transition: all 0.4s ease;
+            font-family: inherit;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #666;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            background: rgba(0, 212, 255, 0.05);
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .input-hint {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 35px 0 25px 0;
+        }
+
+        .btn {
+            padding: 18px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            color: #000;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            grid-column: 1 / -1;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-reset {
+            background: rgba(255, 255, 255, 0.08);
+            color: #00d4ff;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-reset:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.6);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+            color: #000;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            width: 100%;
+            margin-top: 20px;
+            display: none;
+            grid-column: 1 / -1;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+        }
+
+        /* Status */
+        .status {
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 0.95em;
+            text-align: center;
+            border-left: 4px solid;
+            background: rgba(255, 255, 255, 0.02);
+            animation: statusSlide 0.4s ease-out;
+            margin-top: 15px;
+        }
+
+        @keyframes statusSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .status.info {
+            border-left-color: #00d4ff;
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.08);
+        }
+
+        .status.loading {
+            border-left-color: #ffaa00;
+            color: #ffaa00;
+            background: rgba(255, 170, 0, 0.08);
+        }
+
+        .status.success {
+            border-left-color: #00ff88;
+            color: #00ff88;
+            background: rgba(0, 255, 136, 0.08);
+        }
+
+        .status.error {
+            border-left-color: #ff4444;
+            color: #ff4444;
+            background: rgba(255, 68, 68, 0.08);
+        }
+
+        /* Tips */
+        .tips {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #a0b0ff;
+            line-height: 1.7;
+        }
+
+        .tips strong {
+            color: #6366f1;
+        }
+
+        /* Preview */
+        .preview-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .preview-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .image-frame {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+            border: 2px dashed rgba(99, 102, 241, 0.3);
+            border-radius: 18px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #previewImage {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            display: none;
+            object-fit: contain;
+            animation: imageReveal 0.6s ease-out;
+        }
+
+        @keyframes imageReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.9) rotate(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        .placeholder-text {
+            color: #666;
+            font-size: 1.1em;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .loader {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(0, 212, 255, 0.2);
+            border-top: 4px solid #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 212, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 212, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .left-section, .right-section {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .image-frame {
+                min-height: 300px;
+            }
+
+            #previewImage {
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-section, .right-section {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .form-container {
+                padding: 25px;
+            }
+
+            .banner-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- LEFT SECTION -->
+        <div class="left-section">
+            <div class="header">
+                <h1>🌟 FAKE WA 🌟</h1>
+                <p class="subtitle">Professional Profile Generator</p>
+            </div>
+
+            <div class="banner">
+                <h2>👨‍💼 CREATOR</h2>
+                <div class="banner-content">
+                    <div class="banner-item">📱 +6011-3918-3035</div>
+                    <div class="banner-item">🔥 Cyber Force X</div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="section-header">⚡ SETUP PROFIL</div>
+
+                <div class="form-group">
+                    <label>👤 Nama Profil</label>
+                    <input type="text" id="nama" placeholder="Masukkan nama Anda">
+                    <div class="input-hint">Nama yang tampil di profil WhatsApp</div>
+                </div>
+
+                <div class="form-group">
+                    <label>✍️ Bio / Status</label>
+                    <textarea id="bio" placeholder="Masukkan bio atau status Anda"></textarea>
+                    <div class="input-hint">Deskripsi profil Anda</div>
+                </div>
+
+                <div class="form-group">
+                    <label>📱 Nomor Telepon</label>
+                    <input type="text" id="nomor" placeholder="Contoh: 60123456789">
+                    <div class="input-hint">Format: 60 (tanpa +)</div>
+                </div>
+
+                <div class="form-group">
+                    <label>🖼️ URL Gambar Profil</label>
+                    <input type="url" id="url_pp" placeholder="https://example.com/foto.jpg">
+                    <div class="input-hint">Link gambar profil (JPG/PNG)</div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-generate" onclick="generateImage()">
+                        🚀 GENERATE
+                    </button>
+                    <button class="btn btn-reset" onclick="resetForm()">
+                        🔄 RESET
+                    </button>
+                </div>
+
+                <div class="status info" id="statusMsg">
+                    ✨ Siap! Isi form lengkap dan tekan GENERATE
+                </div>
+
+                <div class="tips">
+                    <strong>💡 Tips:</strong><br>
+                    • Gunakan gambar berkualitas tinggi<br>
+                    • Bio yang menarik = hasil lebih baik<br>
+                    • No. telepon maksimum 10 digit
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SECTION -->
+        <div class="right-section">
+            <div class="preview-container">
+                <div class="preview-title">👁️ PREVIEW HASIL</div>
+                <div class="image-frame">
+                    <div class="loader" id="loader"></div>
+                    <img id="previewImage" src="" alt="Preview Profil">
+                    <div class="placeholder-text" id="placeholderText">📸 Hasil gambar akan tampil di sini setelah generate</div>
+                </div>
+                <button class="btn btn-download" id="downloadBtn" onclick="downloadImage()">
+                    💾 DOWNLOAD GAMBAR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://ikyyzyyrestapi.my.id/canvas/fakewa';
+        let currentImage = '';
+
+        function validateForm() {
+            const nama = document.getElementById('nama').value.trim();
+            const bio = document.getElementById('bio').value.trim();
+            const nomor = document.getElementById('nomor').value.trim();
+            const url = document.getElementById('url_pp').value.trim();
+
+            if (!nama) return showStatus('❌ Nama tidak boleh kosong!', 'error');
+            if (!bio) return showStatus('❌ Bio tidak boleh kosong!', 'error');
+            if (nomor.length < 10) return showStatus('❌ No. telepon minimal 10 digit!', 'error');
+            if (!isValidUrl(url)) return showStatus('❌ URL gambar tidak valid!', 'error');
+
+            return true;
+        }
+
+        function isValidUrl(str) {
+            try { new URL(str); return true; }
+            catch { return false; }
+        }
+
+        function showStatus(msg, type) {
+            const el = document.getElementById('statusMsg');
+            el.textContent = msg;
+            el.className = `status ${type}`;
+        }
+
+        function generateImage() {
+            if (!validateForm()) return;
+
+            const nama = document.getElementById('nama').value;
+            const bio = document.getElementById('bio').value;
+            const nomor = document.getElementById('nomor').value;
+            const url_pp = document.getElementById('url_pp').value;
+
+            showStatus('⏳ Sedang memproses... Harap tunggu', 'loading');
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('previewImage').style.display = 'none';
+            document.getElementById('placeholderText').style.display = 'block';
+
+            // Build correct API URL with proper parameters
+            const apiUrl = `${API_URL}?nama=${encodeURIComponent(nama)}&bio=${encodeURIComponent(bio)}&nomor=${encodeURIComponent(nomor)}&url_pp=${encodeURIComponent(url_pp)}`;
+
+            console.log('Fetching API:', apiUrl);
+
+            // Fetch from API with proper handling
+            fetch(apiUrl)
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    console.log('Response URL:', response.url);
+                    
+                    // API returns the image directly or redirects
+                    if (response.ok) {
+                        // The response IS the image
+                        displayImage(apiUrl);
+                    } else {
+                        showStatus('❌ API Error: ' + response.status, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    showStatus('❌ Error: ' + error.message, 'error');
+                });
+        }
+
+        function displayImage(url) {
+            const img = document.getElementById('previewImage');
+            const loader = document.getElementById('loader');
+            const placeholder = document.getElementById('placeholderText');
+
+            loader.style.display = 'none';
+            img.src = url;
+            img.style.display = 'block';
+            placeholder.style.display = 'none';
+            document.getElementById('downloadBtn').style.display = 'flex';
+
+            currentImage = url;
+            showStatus('✅ Gambar berhasil dijana! Download sekarang', 'success');
+        }
+
+        function downloadImage() {
+            if (currentImage) {
+                const a = document.createElement('a');
+                a.href = currentImage;
+                a.download = `WhatsApp_Profile_${Date.now()}.jpg`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('nama').value = '';
+            document.getElementById('bio').value = '';
+            document.getElementById('nomor').value = '';
+            document.getElementById('url_pp').value = '';
+
+            document.getElementById('previewImage').style.display = 'none';
+            document.getElementById('previewImage').src = '';
+            document.getElementById('placeholderText').style.display = 'block';
+            document.getElementById('downloadBtn').style.display = 'none';
+            document.getElementById('loader').style.display = 'none';
+
+            showStatus('✨ Form direset! Siap untuk input baru', 'success');
+        }
+    </script>
+</body>
+</html>
